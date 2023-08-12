@@ -11,8 +11,12 @@
     "lint": "eslint . --ext .ts",
     "test": "jest"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Gilbert D. Cuerbo",
+    "email": "gilbert.cuerbo@gmail.com",
+    "url": "https://gilbertgit95.github.io/"
+  },
+  "license": "MIT",
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/jest": "^29.5.1",
