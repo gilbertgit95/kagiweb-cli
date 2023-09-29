@@ -1,9 +1,11 @@
 {
-  "name": "@kagiweb-tech/kagiweb-cli",
+  "name": "@kagiweb-tech/cli",
   "version": "1.0.0",
   "description": "testing npm cli",
   "main": "bin/index.js",
-  "bin": "./bin/index.js",
+  "bin": {
+    "create-kagiweb-app": "./bin/index.js"
+  },
   "scripts": {
     "start": "node bin/index.js",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
