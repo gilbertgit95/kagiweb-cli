@@ -1,2 +1,3 @@
 #!/usr/bin/env node
-console.log('started')
+import main from './main'
+main()
