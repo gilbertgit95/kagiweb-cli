@@ -17,7 +17,12 @@ import Config from '@kagiweb-tech/api-core-a/utils/config'
 //      b. Webapp (using kagiweb-ui-core-a)
 
 export default () => {
-    console.log('cli started');
+    console.log('cli started')
     const env = Config.getEnv()
-    console.log('config env: ', env) 
+    console.log('config env: ', env)
+
+    // for administrative processes
+    // check app env
+    // if it does not have .env
+    // then break the process
 }
