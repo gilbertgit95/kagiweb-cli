@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 import express from 'express'
-import appHandler from '@kagiweb-tech/api-core-a'
+import appHandler, { appEvents } from '@kagiweb-tech/api-core-a'
 import noteRoutes from './noteRoutes'
 import taskRoutes from './taskRoutes'
 
@@ -15,6 +15,16 @@ appHandler.addPrivateRoute(taskRoutes)
 const env = appHandler.getEnv()
 const appRoutes = appHandler.getAppRoutes()
 const app = express().use(appRoutes)
+
+// bind app event callbacks
+appEvents.on('otp-signin', (data) => {
+    console.log('otp-signin has been emited!: ', data)
+    console.log(`otp-signin ${ data.lt.key } key will be sent to ${ data.lt.recipient }`)
+})
+appEvents.on('otp-reset-pass', (data) => {
+    // console.log('otp-reset-pass has been emited!: ', data)
+    console.log(`otp-reset-pass ${ data.lt.key } key will be sent to ${ data.lt.recipient }`)
+})
 
 app.listen(env.AppPort, async () => {
     try {
