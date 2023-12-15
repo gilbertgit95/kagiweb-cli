@@ -1,9 +1,27 @@
 import prompts from 'prompts'
 import Config from '@kagiweb-tech/api-core-a/utils/config';
+import Encryption from '@kagiweb-tech/api-core-a/utils/encryption';
 
 const env = Config.getEnv();
 
 class AdministrativeTasks {
+    public async randomKey():Promise<void> {
+        const key = Encryption.generateRandKey()
+        console.log(` -> Random key is: ${ key }`)
+    }
+
+    public async hashPassword():Promise<void> {
+        const input = await prompts({
+            type: 'text',
+            name: 'value',
+            message: 'Enter you password'
+        })
+        // then hash the text
+        const hash = await Encryption.hashText(input.value)
+
+        console.log(` -> Hashed text is : ${ hash }`)
+    }
+
     public async execute() {
         const actionToExecute = await prompts({
             type: 'select',
@@ -39,10 +57,10 @@ class AdministrativeTasks {
             console.log('Execute dbSeed')
         }
         if (actionToExecute.action === 'generateSecret') {
-            console.log('Execute generateSecret')
+            await this.randomKey()
         }
         if (actionToExecute.action === 'generateHash') {
-            console.log('Execute generateHash')
+            await this.hashPassword()
         }
     }
 }

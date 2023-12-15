@@ -9,12 +9,12 @@ import AppsCreator from './appsCreator';
 const logo = `
 oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 ooooooo/  /oo.*  .*ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-oooooo/  /o*  .ooooooooooooooooooooooooooooooooooooo/_________.   _________/oooooooooo
-ooooo/     .*oo/    |/       |/.  _/|o/   |o/  /  ____/  __   /  | .____/     / |o|  o
-oooo/    *oooo/  o  |  /oo|__|/  /  |/    |/  /  |ooo/. /oo  /o  | |ooo   000|  |o|  o
-ooo/  .o.  *o/  _   | /oo+---+  /|  |  |  |  /|   __/  __  ooo|  |  __/.  ooo|       o
-oo/  /ooo*.  *./o|  | |oo|  |  /o|  . /|  . /o|  |o/__/ooo  /o|  | |ooo.   oo|  |o|  o
-o/__/oooooo*.__*o|__|.______|__/o|___/o|___/oo|_______/____/oo|__|______/..     /o|  o
+oooooo/  /o*  .ooooooooooooooooooooooooooooooooooooo/_________    _________/oooooooooo
+ooooo/     .*oo/    |/       |/.  _/|o/   |o/  /  ____/  _   /.  | .____/     / |o|  o
+oooo/    *oooo/  o  |  /oo|__|/  /  |/    |/  / /ooo/. /oo  /o   | |ooo   000|  |o|  o
+ooo/  .o.  *o/  _   | /oo+---+  /|  |  |  |  /   __/  __  oooo|  |  __/.  ooo|       o
+oo/  /ooo*.  *./o|  | |oo|  |  /o|  . /|  . / /ooo/__/ooo  /oo|  | |ooo.   oo|  |o|  o
+o/__/oooooo*.__*o|__|.______|__/o|___/o|___/__________/___/ooo|__|______/..     /o|  o
 oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 `;
 
