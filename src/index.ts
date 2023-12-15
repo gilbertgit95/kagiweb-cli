@@ -1,3 +1,3 @@
 #!/usr/bin/env node
-import main from './main'
-main()
+import main from './main';
+main();

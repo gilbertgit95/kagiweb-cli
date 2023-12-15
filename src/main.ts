@@ -1,7 +1,7 @@
-import dotenv from 'dotenv'
-dotenv.config()
+import dotenv from 'dotenv';
+dotenv.config();
 
-import Config from '@kagiweb-tech/api-core-a/utils/config'
+import Config from '@kagiweb-tech/api-core-a/utils/config';
 
 // 1. administrative commands
 //      ---- generators ----
@@ -16,13 +16,16 @@ import Config from '@kagiweb-tech/api-core-a/utils/config'
 //      a. Server (using kagiweb-api-core-a)
 //      b. Webapp (using kagiweb-ui-core-a)
 
-export default () => {
+
+// for administrative processes
+// check app env
+// if it does not have .env
+// then break the process
+
+export default async () => {
     console.log('cli started')
     const env = Config.getEnv()
-    console.log('config env: ', env)
+    // console.log('config env: ', env)
 
-    // for administrative processes
-    // check app env
-    // if it does not have .env
-    // then break the process
-}
+    
+};
