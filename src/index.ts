@@ -58,12 +58,10 @@ oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
     // execution
     if (actionToExecute.action === 'adminTask') {
-        console.log('Execute administrative tasks')
         const admin = new AdministrativeTasks()
         await admin.execute()
     }
     if (actionToExecute.action === 'appsCreator') {
-        console.log('Execute app creators')
         const admin = new AppsCreator()
         await admin.execute()
     }

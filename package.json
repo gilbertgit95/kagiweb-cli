@@ -1,7 +1,7 @@
 {
   "name": "@kagiweb-tech/cli",
   "version": "1.0.1",
-  "description": "testing npm cli",
+  "description": "Helper cli for kagiweb-tech projects",
   "main": "bin/index.js",
   "bin": "./bin/index.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@kagiweb-tech/api-core-a": "^1.0.4",
+    "@kagiweb-tech/api-core-a": "^1.0.6",
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
     "moment": "^2.29.4",

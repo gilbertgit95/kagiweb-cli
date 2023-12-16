@@ -29,7 +29,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@kagiweb-tech/api-core-a": "^1.0.4",
+    "@kagiweb-tech/api-core-a": "^1.0.6",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "swagger-themes": "^1.2.30",

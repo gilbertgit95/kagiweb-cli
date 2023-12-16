@@ -1,8 +1,6 @@
+import fs from 'fs'
+import path from 'node:path'
 import prompts from 'prompts'
-import Config from '@kagiweb-tech/api-core-a/utils/config';
-import Encryption from '@kagiweb-tech/api-core-a/utils/encryption';
-
-const env = Config.getEnv();
 
 class AppsCreator {
 
@@ -13,22 +11,52 @@ class AppsCreator {
             message: 'Select action to execute: ',
             choices: [
                 {
-                    title: 'Create - API Core A', value: 'apiCoreA',
-                    description: 'Server side application using @kagiweb-tech/api-core-a (Typescript, Express, Mongoose).'
+                    title: 'Create - API Core A (Ts)', value: 'apiCoreATs',
+                    description: 'Server side application using @kagiweb-tech/api-core-a for typescript setup.'
                 },
                 {
-                    title: 'Create - UI Core A', value: 'uiCoreA',
-                    description: 'Client side application using @kagiweb-tech/ui-core-a (Typescript, React and Redux).'
+                    title: 'Create - UI Core A (Ts)', value: 'uiCoreATs',
+                    description: 'Client side application using @kagiweb-tech/ui-core-a for typescript setup.'
                 }
             ]
         })
 
+        const project = await prompts({
+            type: 'text',
+            name: 'name',
+            message: 'Enter project name:',
+            validate: (value) => {
+                if (/^[\w-_]{6,20}$/.test(value)) {
+                    return true
+                } else {
+                    return 'Value should only contain apha-numeric, minus, underscore, minimum length 6 and maximum length 20.'
+                }
+            }
+        })
+
         // execution
-        if (actionToExecute.action === 'apiCoreA') {
-            console.log('Execute apiCoreA')
+        if (actionToExecute.action === 'apiCoreATs') {
+            const sourceFolder = path.resolve(__dirname, '../templates/api-core-a-ts')
+            const distFolder = path.resolve('./' + project.name)
+            try {
+                console.log(' - create folder ' + project.name + ' and extract initial codebase...')
+                fs.cpSync(sourceFolder, distFolder, { recursive: true })
+                console.log(' - done')
+            } catch (error) {
+                console.log(' - Error while extracting the codebase!')
+            }
         }
-        if (actionToExecute.action === 'uiCoreA') {
-            console.log('Execute uiCoreA')
+
+        if (actionToExecute.action === 'uiCoreATs') {
+            const sourceFolder = path.resolve(__dirname, '../templates/ui-core-a-ts')
+            const distFolder = path.resolve('./' + project.name)
+            try {
+                console.log(' - create folder ' + project.name + ' and extract initial codebase...')
+                fs.cpSync(sourceFolder, distFolder, { recursive: true })
+                console.log(' - done')
+            } catch (error) {
+                console.log(' - Error while extracting the codebase!')
+            }
         }
     }
 }
