@@ -1,9 +1,11 @@
 {
-  "name": "api-core-a-test",
+  "name": "api-core-a",
   "version": "1.0.0",
-  "description": "api app",
+  "description": "api application using @kagiweb-tech/api-core-a",
   "homepage": "",
   "keywords": [
+    "kagiweb-tech",
+    "api core",
     "express app"
   ],
   "main": "build/src/index.js",
@@ -29,7 +31,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@kagiweb-tech/api-core-a": "^1.0.6",
+    "@kagiweb-tech/api-core-a": "^1.0.8",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "swagger-themes": "^1.2.30",
