@@ -1,0 +1,11 @@
+{
+  "name": "ui-core-a-ts",
+  "version": "1.0.0",
+  "description": "This will contain a client side web app develop using Typescript, React and Redux.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
