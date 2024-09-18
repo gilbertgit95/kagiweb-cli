@@ -4,10 +4,10 @@ import { Provider } from 'react-redux';
 
 import reportWebVitals from './reportWebVitals';
 
-import App, {
-  appStore,
-  appHandler
-} from './App';
+// import App, {
+//   appStore,
+//   appHandler
+// } from './App';
 
 // create root component
 const root = ReactDOM.createRoot(
@@ -47,11 +47,12 @@ const customConfig = {
   defaultPage: 1
 }
 
-appHandler.setAppConfig(customConfig)
+// appHandler.setAppConfig(customConfig)
 root.render(
-  <Provider store={appStore}>
-    <App />
-  </Provider>
+  // <Provider store={appStore}>
+  //   <App />
+  // </Provider>
+  <div>test</div>
 );
 
 // If you want to start measuring performance in your app, pass a function
