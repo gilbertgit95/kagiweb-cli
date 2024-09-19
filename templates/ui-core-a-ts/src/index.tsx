@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {  } from 'test-react-app-library'
+
 import { Provider } from 'react-redux';
 
 import reportWebVitals from './reportWebVitals';
@@ -52,7 +54,9 @@ root.render(
   // <Provider store={appStore}>
   //   <App />
   // </Provider>
-  <div>test</div>
+  <div>
+    test
+  </div>
 );
 
 // If you want to start measuring performance in your app, pass a function
