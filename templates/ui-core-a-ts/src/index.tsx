@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {  } from 'test-react-app-library'
+import TestReactComponent from 'test-react-app-library'
 
 import { Provider } from 'react-redux';
 
 import reportWebVitals from './reportWebVitals';
 
-// import App, {
-//   appStore,
-//   appHandler
-// } from './App';
+import App, {
+  // appStore,
+  // appHandler
+} from './App';
 
 // create root component
 const root = ReactDOM.createRoot(
@@ -55,7 +55,8 @@ root.render(
   //   <App />
   // </Provider>
   <div>
-    test
+    {/* <TestReactComponent /> */}
+    <App />
   </div>
 );
 
