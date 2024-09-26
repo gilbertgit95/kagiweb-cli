@@ -8,10 +8,15 @@ import RoleModel from '@kagiweb-tech/api-core-a/models/roleModel';
 import UserModel from '@kagiweb-tech/api-core-a/models/userModel';
 import WorkspaceModel from '@kagiweb-tech/api-core-a/models/workspaceModel';
 
-import features from './seeds/featuresSeed';
-import roles from './seeds/rolesSeed';
-import users from './seeds/usersSeed';
-import workspaces from './seeds/workspaceSeed';
+// import features from './seeds/featuresSeed';
+// import roles from './seeds/rolesSeed';
+// import users from './seeds/usersSeed';
+// import workspaces from './seeds/workspaceSeed';
+
+const features:any[] = []
+const roles:any[] = []
+const users:any[] = []
+const workspaces:any[] = []
 
 const env = Config.getEnv();
 
