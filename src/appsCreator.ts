@@ -17,6 +17,10 @@ class AppsCreator {
                 {
                     title: 'Create - UI Core A (Ts)', value: 'uiCoreATs',
                     description: 'Client side application using @kagiweb-tech/ui-core-a for typescript setup.'
+                },
+                {
+                    title: 'Create - Fullstack App Core A (Ts)', value: 'fullstackAppCoreATs',
+                    description: 'Fullstack application using @kagiweb-tech/ui-core-a for typescript setup.'
                 }
             ]
         })
@@ -57,6 +61,20 @@ class AppsCreator {
             } catch (error) {
                 console.log(' - Error while extracting the codebase!')
             }
+        }
+        if (actionToExecute.action === 'fullstackAppCoreATs') {
+            // todo
+            // init fullstack template here
+
+            // const sourceFolder = path.resolve(__dirname, '../templates/ui-core-a-ts')
+            // const distFolder = path.resolve('./' + project.name)
+            // try {
+            //     console.log(' - create folder ' + project.name + ' and extract initial codebase...')
+            //     fs.cpSync(sourceFolder, distFolder, { recursive: true })
+            //     console.log(' - done')
+            // } catch (error) {
+            //     console.log(' - Error while extracting the codebase!')
+            // }
         }
     }
 }
