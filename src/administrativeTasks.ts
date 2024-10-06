@@ -1,26 +1,33 @@
+import fs from 'fs'
 import prompts from 'prompts'
 import Config from '@kagiweb-tech/api-core-a/utils/config';
-import mongoose from '@kagiweb-tech/api-core-a/mongoose';
+import mongoose from 'mongoose';
 import Encryption from '@kagiweb-tech/api-core-a/utils/encryption';
 
 import FeatureModel from '@kagiweb-tech/api-core-a/models/featureModel';
 import RoleModel from '@kagiweb-tech/api-core-a/models/roleModel';
-import UserModel from '@kagiweb-tech/api-core-a/models/userModel';
-import WorkspaceModel from '@kagiweb-tech/api-core-a/models/workspaceModel';
+import UserModel from '@kagiweb-tech/api-core-a/models/accountModel';
 
-// import features from './seeds/featuresSeed';
-// import roles from './seeds/rolesSeed';
-// import users from './seeds/usersSeed';
-// import workspaces from './seeds/workspaceSeed';
+// import features from '@kagiweb-tech/api-core-a/src/dataSource/seeds/features.json';
+// import roles from '@kagiweb-tech/api-core-a/src/dataSource/seeds/roles.json';
+// import accounts from '@kagiweb-tech/api-core-a/src/dataSource/seeds/accounts.json';
 
-const features:any[] = []
-const roles:any[] = []
-const users:any[] = []
-const workspaces:any[] = []
+// const features:any[] = []
+// const roles:any[] = []
+// const accounts:any[] = []
 
 const env = Config.getEnv();
 
 class AdministrativeTasks {
+    public async loadSeedData(dir:string):Promise<any[]> {
+        return new Promise((resolve, reject) => {
+            fs.readFile(dir, "utf8", (error, data) => {
+                if (error) reject([])
+                resolve(JSON.parse(data))
+            })
+        })
+    }
+
     public async randomKey():Promise<void> {
         const key = Encryption.generateRandKey()
         console.log(` -> Random key is: ${ key }`)
@@ -56,14 +63,15 @@ class AdministrativeTasks {
         console.log(' - cleaning user')
         await UserModel.deleteMany({})
 
-        // clean workspace
-        console.log(' - cleaning workspace')
-        await WorkspaceModel.deleteMany({})
-
         console.log(' - Done')
     }
 
     public async seedDB():Promise<void> {
+        // get json files
+        let features:any[] = await this.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/features.json')
+        let roles:any[] = await this.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/roles.json')
+        let accounts:any[] = await this.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/accounts.json')
+
         // seed features
         console.log(' + seeding feature')
         await FeatureModel.bulkWrite(features.map(item => {
@@ -88,21 +96,9 @@ class AdministrativeTasks {
             }
         }))
 
-        // seed users
+        // seed accounts
         console.log(' + seeding user')
-        await UserModel.bulkWrite(users.map(item => {
-            return {
-                updateOne: {
-                    filter: { _id: item._id },
-                    update: item,
-                    upsert: true
-                }
-            }
-        }))
-
-        // seed workspaces
-        console.log(' + seeding workspace')
-        await WorkspaceModel.bulkWrite(workspaces.map(item => {
+        await UserModel.bulkWrite(accounts.map(item => {
             return {
                 updateOne: {
                     filter: { _id: item._id },
