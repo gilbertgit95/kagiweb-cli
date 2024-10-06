@@ -1,9 +1,12 @@
 {
   "name": "@kagiweb-tech/cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Helper for kagiweb-tech projects",
   "_main": "bin/index.js",
-  "bin": "./bin/index.js",
+  "_bin": "./bin/index.js",
+  "bin": {
+    "cli": "./bin/index.js"
+  },
   "scripts": {
     "start": "node bin/index.js",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
@@ -19,6 +22,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/fs-extra": "^11.0.4",
     "@types/jest": "^29.5.1",
     "@types/node": "^20.2.1",
     "@types/prompts": "^2.4.4",
@@ -34,8 +38,9 @@
     "@kagiweb-tech/api-core-a": "^1.0.10",
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
+    "fs-extra": "^11.2.0",
     "moment": "^2.29.4",
-    "prompts": "^2.4.2",
-    "mongoose": "^7.2.0"
+    "mongoose": "^7.2.0",
+    "prompts": "^2.4.2"
   }
 }

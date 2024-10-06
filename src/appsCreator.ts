@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'fs-extra'
 import path from 'node:path'
 import prompts from 'prompts'
 
@@ -18,10 +18,10 @@ class AppsCreator {
                     title: 'Create - UI Core A (Ts)', value: 'uiCoreATs',
                     description: 'Client side application using @kagiweb-tech/ui-core-a for typescript setup.'
                 },
-                // {
-                //     title: 'Create - Fullstack App Core A (Ts)', value: 'fullstackAppCoreATs',
-                //     description: 'Fullstack application using @kagiweb-tech ui-core-a and api-core-a for typescript setup.'
-                // }
+                {
+                    title: 'Create - Fullstack App Core A (Ts)', value: 'fullstackCoreATs',
+                    description: 'Fullstack application both API core A (Ts) and UI core A (Ts).'
+                }
             ]
         })
 
@@ -40,11 +40,12 @@ class AppsCreator {
 
         // execution
         if (actionToExecute.action === 'apiCoreATs') {
-            const sourceFolder = path.resolve(__dirname, '../templates/api-core-a-ts')
-            const distFolder = path.resolve('./' + project.name)
             try {
-                console.log(' - create folder ' + project.name + ' and extract initial codebase...')
-                fs.cpSync(sourceFolder, distFolder, { recursive: true })
+                const sourceFolder = path.resolve(__dirname, '../templates/api-core-a-ts')
+                const distFolder = path.resolve('./' + project.name)
+
+                console.log(' - create folder ' + project.name + ' and extract api codebase...')
+                await fs.copy(sourceFolder, distFolder)
                 console.log(' - done')
             } catch (error) {
                 console.log(' - Error while extracting the codebase!')
@@ -52,29 +53,38 @@ class AppsCreator {
         }
 
         if (actionToExecute.action === 'uiCoreATs') {
-            const sourceFolder = path.resolve(__dirname, '../templates/ui-core-a-ts')
-            const distFolder = path.resolve('./' + project.name)
             try {
-                console.log(' - create folder ' + project.name + ' and extract initial codebase...')
-                fs.cpSync(sourceFolder, distFolder, { recursive: true })
+                const sourceFolder = path.resolve(__dirname, '../templates/ui-core-a-ts')
+                const distFolder = path.resolve('./' + project.name)
+
+                console.log(' - create folder ' + project.name + ' and extract ui codebase...')
+                await fs.copy(sourceFolder, distFolder)
                 console.log(' - done')
             } catch (error) {
                 console.log(' - Error while extracting the codebase!')
             }
         }
-        if (actionToExecute.action === 'fullstackAppCoreATs') {
+        if (actionToExecute.action === 'fullstackCoreATs') {
             // todo
             // init fullstack template here
 
-            // const sourceFolder = path.resolve(__dirname, '../templates/ui-core-a-ts')
-            // const distFolder = path.resolve('./' + project.name)
-            // try {
-            //     console.log(' - create folder ' + project.name + ' and extract initial codebase...')
-            //     fs.cpSync(sourceFolder, distFolder, { recursive: true })
-            //     console.log(' - done')
-            // } catch (error) {
-            //     console.log(' - Error while extracting the codebase!')
-            // }
+            try {
+                // ui
+                const uiSourceFolder = path.resolve(__dirname, '../templates/ui-core-a-ts')
+                const uiDistFolder = path.resolve('./' + project.name + '/ui')
+                console.log(' - create folder ' + project.name + ' and extract ui codebase...')
+                await fs.copy(uiSourceFolder, uiDistFolder)
+
+                // api
+                const apiSourceFolder = path.resolve(__dirname, '../templates/api-core-a-ts')
+                const apiDistFolder = path.resolve('./' + project.name + '/api')
+                console.log(' - create folder ' + project.name + ' and extract api codebase...')
+                await fs.copy(apiSourceFolder, apiDistFolder)
+                console.log(' - done')
+            } catch (error) {
+                console.log(' - Error while extracting the codebase!')
+            }
+            
         }
     }
 }
