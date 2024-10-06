@@ -1,4 +1,4 @@
-import { Schema, model, Document, Types } from '@kagiweb-tech/api-core-a/mongoose'
+import { Schema, model, Document, Types } from 'mongoose'
 import { randomUUID } from 'crypto'
 
 interface ITask {

@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 import express from 'express'
+import mongoose from 'mongoose'
 import appHandler, { appEvents } from '@kagiweb-tech/api-core-a'
 import noteRoutes from './noteRoutes'
 import taskRoutes from './taskRoutes'
@@ -16,6 +17,7 @@ const env = appHandler.getEnv()
 const appRoutes = appHandler.getAppRoutes()
 const app = express().use(appRoutes)
 
+// bind app event callbacks
 appEvents.on('otp', (data) => {
     if (data.module === 'signin') {
         console.log(`otp: signin, ${ data.lt.key } key will be sent to ${ data.lt.recipient }`)
@@ -66,7 +68,10 @@ app.listen(env.AppPort, async () => {
     // console.log(jwtDoc, exp? new Date(exp * 1e3): undefined)
 
     try {
-        await appHandler.dbConnect()
+        // await appHandler.dbConnect()
+        await mongoose.connect(env.MongoURI? env.MongoURI: '', {
+            dbName: env.DBName
+        })
         console.log(`- Successfully connected to database`)
         await appHandler.executePostDBConnectionProcess()
         console.log(`- Execute post db conection process`)

@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import TestReactComponent from 'test-react-app-library'
-
 import { Provider } from 'react-redux';
 
 import reportWebVitals from './reportWebVitals';
 
 import App, {
-  // appStore,
-  // appHandler
-} from './App';
+  appStore,
+  appHandler
+} from '@kagiweb-tech/ui-core-a';
 
 // create root component
 const root = ReactDOM.createRoot(
@@ -36,7 +34,7 @@ const customTheme = {
 const customConfig = {
   AppName: 'Kagiweb tech',
   AppDescription: '',
-  ServerAddress: 'http://127.0.0.1:5000',
+  ServerAddress: 'http://127.0.0.1:5001',
   RootApiEndpoint: '/api/v1/',
   TokenKey: '_auth_token',
   AppThemeKey: '_app_theme',
@@ -49,15 +47,11 @@ const customConfig = {
   defaultPage: 1
 }
 
-// appHandler.setAppConfig(customConfig)
+appHandler.setAppConfig(customConfig)
 root.render(
-  // <Provider store={appStore}>
-  //   <App />
-  // </Provider>
-  <div>
-    {/* <TestReactComponent /> */}
+  <Provider store={appStore}>
     <App />
-  </div>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

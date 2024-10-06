@@ -18,10 +18,10 @@ class AppsCreator {
                     title: 'Create - UI Core A (Ts)', value: 'uiCoreATs',
                     description: 'Client side application using @kagiweb-tech/ui-core-a for typescript setup.'
                 },
-                {
-                    title: 'Create - Fullstack App Core A (Ts)', value: 'fullstackAppCoreATs',
-                    description: 'Fullstack application using @kagiweb-tech ui-core-a and api-core-a for typescript setup.'
-                }
+                // {
+                //     title: 'Create - Fullstack App Core A (Ts)', value: 'fullstackAppCoreATs',
+                //     description: 'Fullstack application using @kagiweb-tech ui-core-a and api-core-a for typescript setup.'
+                // }
             ]
         })
 
