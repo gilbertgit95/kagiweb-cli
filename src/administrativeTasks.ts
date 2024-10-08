@@ -1,4 +1,5 @@
 import fs from 'fs'
+import _ from 'lodash'
 import prompts from 'prompts'
 import Config from '@kagiweb-tech/api-core-a/utils/config';
 import mongoose from 'mongoose';
@@ -6,23 +7,33 @@ import Encryption from '@kagiweb-tech/api-core-a/utils/encryption';
 
 import FeatureModel from '@kagiweb-tech/api-core-a/models/featureModel';
 import RoleModel from '@kagiweb-tech/api-core-a/models/roleModel';
-import UserModel from '@kagiweb-tech/api-core-a/models/accountModel';
-
-// import features from '@kagiweb-tech/api-core-a/src/dataSource/seeds/features.json';
-// import roles from '@kagiweb-tech/api-core-a/src/dataSource/seeds/roles.json';
-// import accounts from '@kagiweb-tech/api-core-a/src/dataSource/seeds/accounts.json';
-
-// const features:any[] = []
-// const roles:any[] = []
-// const accounts:any[] = []
+import AccountModel from '@kagiweb-tech/api-core-a/models/accountModel';
 
 const env = Config.getEnv();
 
 class AdministrativeTasks {
+    public cleanupSeeds(data:any[]) {
+        const to_ommit = ['createdAt', 'updatedAt', 'expTime']
+        const to_ommit_set = new Set(to_ommit)
+
+        // loop trough items
+        // for (let item of data) {
+        //     if (typeof item === 'object') {
+        //         for (let prop of Object.keys(item)) {
+        //             if (to_ommit_set.has(prop)) {
+        //                 _.omit()
+        //             }
+        //         }
+        //     }
+        // }
+    }
+
     public async loadSeedData(dir:string):Promise<any[]> {
+        
+
         return new Promise((resolve, reject) => {
             fs.readFile(dir, "utf8", (error, data) => {
-                if (error) reject([])
+                if (error) reject('Error: problem while trying to access the seeds. Try running `npm i` inside the project.')
                 resolve(JSON.parse(data))
             })
         })
@@ -59,9 +70,9 @@ class AdministrativeTasks {
         console.log(' - cleaning role')
         await RoleModel.deleteMany({})
 
-        // clean user
-        console.log(' - cleaning user')
-        await UserModel.deleteMany({})
+        // clean account
+        console.log(' - cleaning account')
+        await AccountModel.deleteMany({})
 
         console.log(' - Done')
     }
@@ -97,8 +108,8 @@ class AdministrativeTasks {
         }))
 
         // seed accounts
-        console.log(' + seeding user')
-        await UserModel.bulkWrite(accounts.map(item => {
+        console.log(' + seeding account')
+        await AccountModel.bulkWrite(accounts.map(item => {
             return {
                 updateOne: {
                     filter: { _id: item._id },

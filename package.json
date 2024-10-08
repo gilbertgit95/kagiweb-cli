@@ -2,10 +2,10 @@
   "name": "@kagiweb-tech/cli",
   "version": "1.0.4",
   "description": "Helper for kagiweb-tech projects",
-  "_main": "bin/index.js",
+  "main": "bin/index.js",
   "_bin": "./bin/index.js",
   "bin": {
-    "cli": "./bin/index.js"
+    "kwtech": "./bin/index.js"
   },
   "scripts": {
     "start": "node bin/index.js",
@@ -24,6 +24,7 @@
     "@types/bcrypt": "^5.0.0",
     "@types/fs-extra": "^11.0.4",
     "@types/jest": "^29.5.1",
+    "@types/lodash": "^4.17.10",
     "@types/node": "^20.2.1",
     "@types/prompts": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
@@ -39,6 +40,7 @@
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
     "fs-extra": "^11.2.0",
+    "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "mongoose": "^7.2.0",
     "prompts": "^2.4.2"
