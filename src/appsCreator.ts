@@ -1,4 +1,4 @@
-import fs from 'fs-extra'
+import fs from 'fs'
 import path from 'node:path'
 import prompts from 'prompts'
 
@@ -45,7 +45,7 @@ class AppsCreator {
                 const distFolder = path.resolve('./' + project.name)
 
                 console.log(' - create folder ' + project.name + ' and extract api codebase...')
-                await fs.copy(sourceFolder, distFolder)
+                fs.cpSync(sourceFolder, distFolder, { recursive: true })
                 console.log(' - done')
             } catch (error) {
                 console.log(' - Error while extracting the codebase!')
@@ -58,7 +58,7 @@ class AppsCreator {
                 const distFolder = path.resolve('./' + project.name)
 
                 console.log(' - create folder ' + project.name + ' and extract ui codebase...')
-                await fs.copy(sourceFolder, distFolder)
+                fs.cpSync(sourceFolder, distFolder, { recursive: true })
                 console.log(' - done')
             } catch (error) {
                 console.log(' - Error while extracting the codebase!')
@@ -73,13 +73,14 @@ class AppsCreator {
                 const uiSourceFolder = path.resolve(__dirname, '../templates/ui-core-a-ts')
                 const uiDistFolder = path.resolve('./' + project.name + '/ui')
                 console.log(' - create folder ' + project.name + ' and extract ui codebase...')
-                await fs.copy(uiSourceFolder, uiDistFolder)
+                fs.cpSync(uiSourceFolder, uiDistFolder, { recursive: true })
 
                 // api
                 const apiSourceFolder = path.resolve(__dirname, '../templates/api-core-a-ts')
                 const apiDistFolder = path.resolve('./' + project.name + '/api')
                 console.log(' - create folder ' + project.name + ' and extract api codebase...')
-                await fs.copy(apiSourceFolder, apiDistFolder)
+                fs.cpSync(apiSourceFolder, apiDistFolder, { recursive: true })
+
                 console.log(' - done')
             } catch (error) {
                 console.log(' - Error while extracting the codebase!')

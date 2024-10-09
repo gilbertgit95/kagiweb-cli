@@ -58,6 +58,14 @@ oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     // execution
     if (actionToExecute.action === 'adminTask') {
         const admin = new AdministrativeTasks()
+
+        // let features:any[] = await admin.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/features.json')
+        // let roles:any[] = await admin.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/roles.json')
+        // let accounts:any[] = await admin.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/accounts.json')
+        
+        // console.log(JSON.stringify(admin.cleanupSeeds(features)[1]))
+        // console.log(JSON.stringify(admin.cleanupSeeds(roles)[1]))
+        // console.log(JSON.stringify(admin.cleanupSeeds(accounts)[1]))
         await admin.execute()
     }
     if (actionToExecute.action === 'appsCreator') {

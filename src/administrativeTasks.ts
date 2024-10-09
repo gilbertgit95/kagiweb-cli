@@ -1,5 +1,4 @@
 import fs from 'fs'
-import _ from 'lodash'
 import prompts from 'prompts'
 import Config from '@kagiweb-tech/api-core-a/utils/config';
 import mongoose from 'mongoose';
@@ -12,20 +11,29 @@ import AccountModel from '@kagiweb-tech/api-core-a/models/accountModel';
 const env = Config.getEnv();
 
 class AdministrativeTasks {
-    public cleanupSeeds(data:any[]) {
-        const to_ommit = ['createdAt', 'updatedAt', 'expTime']
-        const to_ommit_set = new Set(to_ommit)
+    public cleanupSeeds(data:any) {
+        const toOmit = ['createdAt', 'updatedAt', 'expTime']
 
-        // loop trough items
-        // for (let item of data) {
-        //     if (typeof item === 'object') {
-        //         for (let prop of Object.keys(item)) {
-        //             if (to_ommit_set.has(prop)) {
-        //                 _.omit()
-        //             }
-        //         }
-        //     }
-        // }
+         // check if array
+         if (typeof data === 'object' && data.length) {
+            for (let childData of data) {
+                this.cleanupSeeds(childData)
+            }
+        } else if (typeof data === 'object') {
+            for (let omitProp of toOmit) {
+                // delete data[omitProp]
+                if (data[omitProp] && data[omitProp].$date) {
+                    data[omitProp] = new Date()
+                }
+            }
+
+            for (let [prop, value] of Object.entries(data)) {
+                this.cleanupSeeds(value)
+            }
+
+        }
+
+        return data
     }
 
     public async loadSeedData(dir:string):Promise<any[]> {
@@ -82,6 +90,10 @@ class AdministrativeTasks {
         let features:any[] = await this.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/features.json')
         let roles:any[] = await this.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/roles.json')
         let accounts:any[] = await this.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/accounts.json')
+
+        features = this.cleanupSeeds(features)
+        roles = this.cleanupSeeds(roles)
+        accounts = this.cleanupSeeds(accounts)
 
         // seed features
         console.log(' + seeding feature')
