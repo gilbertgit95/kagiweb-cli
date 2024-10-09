@@ -41,8 +41,21 @@ class AdministrativeTasks {
 
         return new Promise((resolve, reject) => {
             fs.readFile(dir, "utf8", (error, data) => {
-                if (error) reject('Error: problem while trying to access the seeds. Try running `npm i` inside the project.')
-                resolve(JSON.parse(data))
+                let errText =  '+--------------------------------------------------------------+\n'
+                    errText += '|       Error!                                                 |\n'
+                    errText += '|       Problem while trying to access the seeds.              |\n'
+                    errText += '|       Try running `npm i` inside the project.                |\n'
+                    errText += '+--------------------------------------------------------------+\n'
+
+                if (error) {
+                    reject(errText)
+                }
+
+                try {
+                    resolve(JSON.parse(data))
+                } catch {
+                    reject(errText)
+                }
             })
         })
     }
@@ -87,9 +100,19 @@ class AdministrativeTasks {
 
     public async seedDB():Promise<void> {
         // get json files
-        let features:any[] = await this.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/features.json')
-        let roles:any[] = await this.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/roles.json')
-        let accounts:any[] = await this.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/accounts.json')
+        let features:any[] = []
+        let roles:any[] = []
+        let accounts:any[] = []
+
+        try {
+            features = await this.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/features.json')
+            roles = await this.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/roles.json')
+            accounts = await this.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/accounts.json')
+
+        } catch (err) {
+            console.log(err)
+            return
+        }
 
         features = this.cleanupSeeds(features)
         roles = this.cleanupSeeds(roles)
