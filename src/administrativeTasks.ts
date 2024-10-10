@@ -23,7 +23,7 @@ class AdministrativeTasks {
             for (let omitProp of toOmit) {
                 // delete data[omitProp]
                 if (data[omitProp] && data[omitProp].$date) {
-                    data[omitProp] = new Date()
+                    data[omitProp] = data[omitProp]?.$date? Date.parse(data[omitProp].$date): new Date()
                 }
             }
 
@@ -31,6 +31,20 @@ class AdministrativeTasks {
                 this.cleanupSeeds(value)
             }
 
+        }
+
+        return data
+    }
+
+    public async setDefaultPassword(data:any):Promise<any> {
+        if (typeof data === 'object') {
+            const expirationDays = 360
+
+            data.passwords = [{
+                isActive: true,
+                key: await Encryption.hashText('Master101!'),
+                expTime: new Date((new Date()).getTime() + (24 * 60 * 60 * 1e3 * expirationDays))
+            }]
         }
 
         return data
@@ -109,6 +123,12 @@ class AdministrativeTasks {
             roles = await this.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/roles.json')
             accounts = await this.loadSeedData('./node_modules/@kagiweb-tech/api-core-a/src/dataSource/seeds/accounts.json')
 
+            // set default configurations
+            for (let acc of accounts) {
+                if (acc.nameId === 'master') {
+                    await this.setDefaultPassword(acc)
+                }
+            }
         } catch (err) {
             console.log(err)
             return
