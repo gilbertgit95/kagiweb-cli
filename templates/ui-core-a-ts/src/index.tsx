@@ -9,6 +9,15 @@ import App, {
   appHandler
 } from '@kagiweb-tech/ui-core-a';
 
+// public pages
+import ContactUsPage, { ContactUsRoute, ContactUsRouteNav } from './pages/public/aboutUs/contactUsPage';
+
+// private pages
+import NotesPage, { NotesRoute, NotesRouteNav } from './pages/private/notes/notesPage';
+import NotePage, { NoteRoute } from './pages/private/notes/notePage';
+import UpdateNotePage, { UpdateNoteRoute } from './pages/private/notes/updateNotePage';
+
+
 // create root component
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -46,6 +55,30 @@ const customConfig = {
   defaultPageSize: 10,
   defaultPage: 1
 }
+
+// add navs
+// public navs
+appHandler.addPublicUserDrawerNav({
+  label: 'About Us',
+  links: [
+    ContactUsRouteNav,
+  ]
+})
+// private nav
+appHandler.addMainDrawer({
+  label: 'Custom Drawer',
+  links:  [
+    NotesRouteNav
+  ]
+})
+
+// add pages
+// public pages
+appHandler.addPublicRoute({url: ContactUsRoute, page: ContactUsPage})
+// private pages
+appHandler.addPrivateRoute({url: NotesRoute, page: NotesPage })
+appHandler.addPrivateRoute({url: NoteRoute, page: NotePage })
+appHandler.addPrivateRoute({url: UpdateNoteRoute, page: UpdateNotePage })
 
 appHandler.setAppConfig(customConfig)
 root.render(
