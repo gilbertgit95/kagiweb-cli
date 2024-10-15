@@ -10,12 +10,12 @@ import App, {
 } from '@kagiweb-tech/ui-core-a';
 
 // public pages
-import ContactUsPage, { ContactUsRoute, ContactUsRouteNav } from './pages/public/aboutUs/contactUsPage';
+import ContactUsPage, { ContactUsRoute, ContactUsRouteNav } from './contactUsPage';
 
 // private pages
-import NotesPage, { NotesRoute, NotesRouteNav } from './pages/private/notes/notesPage';
-import NotePage, { NoteRoute } from './pages/private/notes/notePage';
-import UpdateNotePage, { UpdateNoteRoute } from './pages/private/notes/updateNotePage';
+import NotesPage, { NotesRoute, NotesRouteNav } from './notesPage';
+import NotePage, { NoteRoute } from './notePage';
+import UpdateNotePage, { UpdateNoteRoute } from './updateNotePage';
 
 
 // create root component
@@ -58,29 +58,31 @@ const customConfig = {
 
 // add navs
 // public navs
-appHandler.addPublicUserDrawerNav({
-  label: 'About Us',
+appHandler.addMainNav({
+  label: 'Custom Public Nav',
   links: [
     ContactUsRouteNav,
   ]
-})
+}, 'publicNavs')
 // private nav
-appHandler.addMainDrawer({
+appHandler.addMainNav({
   label: 'Custom Drawer',
   links:  [
     NotesRouteNav
   ]
-})
+}, 'privateNavs')
 
 // add pages
 // public pages
-appHandler.addPublicRoute({url: ContactUsRoute, page: ContactUsPage})
+appHandler.addRoute({url: ContactUsRoute, page: ContactUsPage}, 'publicRoutes')
 // private pages
-appHandler.addPrivateRoute({url: NotesRoute, page: NotesPage })
-appHandler.addPrivateRoute({url: NoteRoute, page: NotePage })
-appHandler.addPrivateRoute({url: UpdateNoteRoute, page: UpdateNotePage })
+appHandler.addRoute({url: NotesRoute, page: NotesPage }, 'privateRoutes')
+appHandler.addRoute({url: NoteRoute, page: NotePage }, 'privateRoutes')
+appHandler.addRoute({url: UpdateNoteRoute, page: UpdateNotePage }, 'privateRoutes')
 
+// set app configuration
 appHandler.setAppConfig(customConfig)
+
 root.render(
   <Provider store={appStore}>
     <App />

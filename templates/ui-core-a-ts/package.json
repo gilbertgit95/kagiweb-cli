@@ -1,5 +1,5 @@
 {
-  "name": "api-sample-app",
+  "name": "ui-sample-app",
   "version": "1.0.0",
   "description": "ui application using @kagiweb-tech/ui-core-a",
   "keywords": [
@@ -8,7 +8,7 @@
   ],
   "private": true,
   "dependencies": {
-    "@kagiweb-tech/ui-core-a": "^1.0.1",
+    "@kagiweb-tech/ui-core-a": "^1.0.2",
     "@reduxjs/toolkit": "^2.0.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

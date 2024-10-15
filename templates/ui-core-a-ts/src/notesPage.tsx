@@ -1,4 +1,7 @@
-import react from 'react'
+import react from 'react';
+import { appStore } from '@kagiweb-tech/ui-core-a';
+
+// const { useAppSelector } = appStore;
 
 export const NotesRoute = 'notes'
 export const NotesRouteNav = {
@@ -8,6 +11,8 @@ export const NotesRouteNav = {
 }
 
 export const NotesPage = () => {
+    // const accountData = useAppSelector(state => state.signedInAccount.accountData)
+
     return (
         <div>
             <h2>Notes View</h2>
