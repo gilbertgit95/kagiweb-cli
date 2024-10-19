@@ -2,7 +2,7 @@ import react from 'react';
 import { appStore } from '@kagiweb-tech/ui-core-a';
 
 // const { useAppSelector } = appStore;
-// import { useAppSelector } from '@kagiweb-tech/ui-core-a/dist/esm/stores/appStore';
+// import { useAppSelector } from '@kagiweb-tech/ui-core-a/stores/';
 
 export const NotesRoute = 'notes'
 export const NotesRouteNav = {

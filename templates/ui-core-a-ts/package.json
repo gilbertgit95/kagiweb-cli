@@ -8,7 +8,7 @@
   ],
   "private": true,
   "dependencies": {
-    "@kagiweb-tech/ui-core-a": "^1.0.2",
+    "@kagiweb-tech/ui-core-a": "^1.0.3",
     "@reduxjs/toolkit": "^2.0.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
