@@ -1,8 +1,4 @@
-import react from 'react';
-import { appStore } from '@kagiweb-tech/ui-core-a';
-
-// const { useAppSelector } = appStore;
-// import { useAppSelector } from '@kagiweb-tech/ui-core-a/stores/';
+import { useAppSelector } from '@kagiweb-tech/ui-core-a';
 
 export const NotesRoute = 'notes'
 export const NotesRouteNav = {
@@ -12,11 +8,12 @@ export const NotesRouteNav = {
 }
 
 export const NotesPage = () => {
-    // const accountData = appStore.useAppSelector(state => state.signedInAccount.accountData)
+    const accountData = useAppSelector(state => state.signedInAccount.accountData)
 
     return (
         <div>
             <h2>Notes View</h2>
+            <ul>{ accountData?.nameId }</ul>
         </div>
     )
 }

@@ -1,6 +1,6 @@
 {
   "name": "@kagiweb-tech/cli",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Helper for kagiweb-tech projects",
   "main": "bin/index.js",
   "_bin": "./bin/index.js",

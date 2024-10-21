@@ -1,5 +1,3 @@
-import react from 'react'
-
 export const UpdateNoteRoute = 'notes/update/:id'
 export const UpdateNoteRouteNav = undefined
 

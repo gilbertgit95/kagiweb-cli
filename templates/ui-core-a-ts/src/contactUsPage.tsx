@@ -1,5 +1,3 @@
-import react from 'react'
-
 export const ContactUsRoute = 'aboutUs/contactUs'
 export const ContactUsRouteNav = {
     label: 'Contact Us',
